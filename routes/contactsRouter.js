@@ -1,28 +1,17 @@
 import express from "express";
-// import {
-//   getAllContacts,
-//   getOneContact,
-//   deleteContact,
-//   createContact,
-//   updateContact,
-// } from "../services/contactsServices.js";
-//from "../controllers/contactsControllers.js";
-import * as contactsServices from "../services/contactsServices.js"
+import validateBody from "../helpers/validateBody.js";
+import contacntsController from "../controllers/contactsControllers.js";
 
 const contactsRouter = express.Router();
 
-contactsRouter.get("/", async(req, res) =>{
-  
-  const result = await contactsServices.getAllContacts()
-  res.json(result)
-} );
+contactsRouter.get("/", contacntsController.getAllContacts);
 
-//contactsRouter.get("/:id", getOneContact);
+contactsRouter.get("/:id", contacntsController.getOneContact);
 
-//contactsRouter.delete("/:id", deleteContact);
+contactsRouter.delete("/:id", contacntsController.deleteContact);
 
-//contactsRouter.post("/", createContact);
+contactsRouter.post("/", validateBody, contacntsController.createContact);
 
-//contactsRouter.put("/:id", updateContact);
+contactsRouter.put("/:id", validateBody, contacntsController.updateContact);
 
 export default contactsRouter;
