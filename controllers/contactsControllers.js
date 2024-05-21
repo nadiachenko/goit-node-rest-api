@@ -50,7 +50,7 @@ const updateContact = async (req, res, next) => {
     const { id } = req.params
     const result = await contactsService.updateContact(id, req.body)
     if (!result) {
-      throw HttpError(404, `Movie not found`)
+      throw HttpError(404, `Contact not found`)
     }
     res.status(201).json(result)
   }
@@ -66,7 +66,7 @@ const deleteContact = async (req, res, next) => {
     if (!result) {
       throw HttpError(404, `Contact not found`)
     }
-    res.status(200).json({ "message": "Deleted" })
+    res.status(200).json(result)
   }
   catch (error) {
     next(error)
