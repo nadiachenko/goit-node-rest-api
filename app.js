@@ -3,8 +3,8 @@ import morgan from "morgan";
 import cors from "cors";
 import contactsRouter from "./routes/contactsRouter.js"
 import mongoose from 'mongoose'
+import { DB_HOST } from "./config.js";
 
-const DB_HOST = 'mongodb+srv://Nadiia:yyfSmKOqgJEnMmEe@cluster0.wazbzwz.mongodb.net/db-contacts?&w=majority&appName=Cluster0'
 mongoose.connect(DB_HOST)
 .then(() => {
   app.listen(3000, () => {
