@@ -18,7 +18,7 @@ const contactsSchema = new Schema({
     type: Boolean,
     default: false,
   },
-});
+}, {versionKey: false});
 
 export const createContactSchema = Joi.object({
   name: Joi.string().required().messages({

@@ -3,11 +3,12 @@ import morgan from "morgan";
 import cors from "cors";
 import contactsRouter from "./routes/contactsRouter.js"
 import mongoose from 'mongoose'
-import dotenv from "dotenv"
+import  "dotenv/config"
+
 
 const {DB_HOST} = process.env
 
-dotenv.config();
+
 
 mongoose.connect(DB_HOST)
 .then(() => {
