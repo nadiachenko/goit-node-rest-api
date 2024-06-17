@@ -3,23 +3,23 @@ import morgan from "morgan";
 import cors from "cors";
 import contactsRouter from "./routes/contactsRouter.js"
 import mongoose from 'mongoose'
-import  "dotenv/config"
+import "dotenv/config"
 import usersRouter from "./routes/usersRouter.js";
 
 
-const {DB_HOST} = process.env
+const { DB_HOST } = process.env
 
 
 mongoose.connect(DB_HOST)
-.then(() => {
-  app.listen(3000, () => {
-    console.log("Database connection successful");
+  .then(() => {
+    app.listen(3000, () => {
+      console.log("Database connection successful");
+    })
   })
-})
-.catch(error => {
-  console.log(error.message)
-  process.exit(1)
-} )
+  .catch(error => {
+    console.log(error.message)
+    process.exit(1)
+  })
 
 const app = express();
 
