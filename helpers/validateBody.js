@@ -1,10 +1,10 @@
-import HttpError from "./HttpError.js";
+import HttpError from "../helpers/HttpError.js";
 
-const validateBody = () => {
+const validateBody = (schema) => {
   return (req, res, next) => {
-    const keys = Object.keys(req.body);
-    if (!keys.length) {
-      return next(HttpError(400, "Body must have at least one field"));
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return next(HttpError(400, error));
     }
     next();
   };

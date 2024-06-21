@@ -9,7 +9,7 @@ const authenticate = async (req, res, next) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-        return next(HttpError(401, "Authorization header is missing"));
+        return next(HttpError(401, "Not authorized"));
     }
     const [bearer, token] = authorization.split(" ")
     if (bearer !== "Bearer") {
@@ -25,7 +25,7 @@ const authenticate = async (req, res, next) => {
         next();
     }
     catch (error) {
-        return next(HttpError(401, error.message))
+        return next(HttpError(401, "Not authorized"))
     }
 }
 
