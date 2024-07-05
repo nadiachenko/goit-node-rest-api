@@ -98,6 +98,9 @@ const getCurrent = async (req, res) => {
 }
 const updateAvatar = async (req, res, next) => {
   try {
+    if (!req.file) {
+      throw HttpError(400, "Pelase attach a file")
+    }
     const { _id } = req.user
     const { path: oldPath, filename } = req.file;
     const uniqueFilename = `${_id}_${filename}`
@@ -107,6 +110,7 @@ const updateAvatar = async (req, res, next) => {
     await image.resize(250, 250).writeAsync(newPath);
     const avatarURL = path.join("avatars", uniqueFilename)
     await User.findByIdAndUpdate(_id, { avatarURL })
+
 
     res.json({
       avatarURL
